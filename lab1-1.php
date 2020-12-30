@@ -1,7 +1,7 @@
 <?php  
   
-define('MAILGUN_URL', 'https://api.mailgun.net/v3/sandbox5099c0f44ddb4ce0883b7ed9d2a87499.mailgun.org');  
-define('MAILGUN_KEY', 'key-mailgun-key');
+define('MAILGUN_URL', 'https://api.mailgun.net/v3/DOMAIN_NAME');  
+define('MAILGUN_KEY', 'key-MAILGUN_KEY');
   
 require_once __DIR__ . '/vendor/autoload.php';  
   
@@ -66,8 +66,7 @@ $crawler
 $text = implode(',', $descriptions) . "\n" . implode(',', $pubDates) . "\n" . implode(',', $links) . "\n";  
 $text .= implode(',', $authors) . "\n" . implode(',', $titles) . "\n";  
   
-//$result = sendMailByMailGun('TO_EMAIL_ADDRESS', 'Peter', 'admin', 'admin@DOMAIN_NAME', 'test', '', $text, '', '');  
-$result = sendMailByMailGunGuzzle('peter279k@gmail.com', 'Peter', 'admin', 'admin@example.com', 'test', '', $text, '', '');  
+$result = sendMailByMailGun('TO_EMAIL_ADDRESS', 'Peter', 'admin', 'admin@DOMAIN_NAME', 'test', '', $text, '', '');  
   
 var_dump($result); 
 
