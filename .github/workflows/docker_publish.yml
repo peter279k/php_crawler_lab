@@ -1,0 +1,24 @@
+name: Docker php_crawler_lab CI/CD
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker php_crawler_lab image
+        run: docker build -t php_crawler .
+      - name: Tags php_crawler
+        run: |
+          docker tag php_crawler ${{ secrets.DOCKER_USER }}/php_crawler:${{ github.sha }}
+          docker tag php_crawler ${{ secrets.DOCKER_USER }}/php_crawler:latest
+      - name: Push Docker php_crawler_lab image
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/php_crawler:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/php_crawler:latest

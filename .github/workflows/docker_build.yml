@@ -1,0 +1,15 @@
+name: Docker couchdb_ext PR CI build
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build Docker php_crawler_lab image
+        run: docker build -t php_crawler .
